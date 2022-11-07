@@ -1,0 +1,18 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+
+        - id: user-service
+          predicates:
+            - Path=/user/**
+          uri: lb://user-service
+   
+        - id: contact-service
+          predicates:
+           - Path=/contact/**
+          uri: lb://contact-service
